@@ -1,3 +1,4 @@
+import { Form, Formik } from "formik";
 import React from "react";
 import Checkbox from "../components/Checkbox";
 import PrimaryButton from "../components/PrimaryButton";
@@ -15,39 +16,47 @@ function Login() {
           <p className="enter-your-account-d x14px--regular">
             Enter your account details or use QR code
           </p>
-          <div className="form">
-            <PrimaryInput
-              fieldTitle="Email"
-              placeholder="catherine.shaw@gmail.com"
-              icon=""
-            />
-            <SecondaryInput
-              fieldTitle="Password"
-              placeholder="Enter your password"
-              icon=""
-            />
-            <div className="flex-row">
-              <Checkbox>Remember me</Checkbox>
-              <div className="recover-password x12px--bold">
-                Recover password
+          <Formik
+            initialValues={{ email: "", password: "" }}
+            onSubmit={(values) => console.log(values)}
+          >
+            <Form>
+              <div className="form">
+                <PrimaryInput
+                  label="Email"
+                  name="email"
+                  placeholder="catherine.shaw@gmail.com"
+                  icon=""
+                />
+                <SecondaryInput
+                  fieldTitle="Password"
+                  placeholder="Enter your password"
+                  icon=""
+                />
+                <div className="flex-row">
+                  <Checkbox>Remember me</Checkbox>
+                  <div className="recover-password x12px--bold">
+                    Recover password
+                  </div>
+                </div>
+                <PrimaryButton>Sign in</PrimaryButton>
+                <div className="or">
+                  <img
+                    alt=""
+                    className="line-2"
+                    src="https://anima-uploads.s3.amazonaws.com/projects/631ef96c30c5be89e49afb9c/releases/631ef971190c8b852614ea0e/img/line-2@2x.svg"
+                  />
+                  <div className="or-1 x14px--regular">or</div>
+                  <img
+                    alt=""
+                    className="line-2-copy"
+                    src="https://anima-uploads.s3.amazonaws.com/projects/631ef96c30c5be89e49afb9c/releases/631ef971190c8b852614ea0e/img/line-2-copy@2x.svg"
+                  />
+                </div>
+                <SecondaryButton icon="" label="Log in with QR code" />
               </div>
-            </div>
-            <PrimaryButton>Sing in</PrimaryButton>
-            <div className="or">
-              <img
-                alt=""
-                className="line-2"
-                src="https://anima-uploads.s3.amazonaws.com/projects/631ef96c30c5be89e49afb9c/releases/631ef971190c8b852614ea0e/img/line-2@2x.svg"
-              />
-              <div className="or-1 x14px--regular">or</div>
-              <img
-                alt=""
-                className="line-2-copy"
-                src="https://anima-uploads.s3.amazonaws.com/projects/631ef96c30c5be89e49afb9c/releases/631ef971190c8b852614ea0e/img/line-2-copy@2x.svg"
-              />
-            </div>
-            <SecondaryButton icon="" label="Log in with QR code" />
-          </div>
+            </Form>
+          </Formik>
           <div className="link-1">
             <p className="you-dont-have-an-ac x14px--regular">
               You don’t have an account?

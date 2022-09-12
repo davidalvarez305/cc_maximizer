@@ -1,23 +1,33 @@
-import React from "react";
+import React, { InputHTMLAttributes } from "react";
+import { useField } from "formik";
 import "./PrimaryInput.css";
 
-interface Props {
-    fieldTitle: string;
-    placeholder: string;
-    icon: any;
-}
+type Props = InputHTMLAttributes<HTMLInputElement> & {
+  label: string;
+  name: string;
+  icon: any;
+};
 
-const PrimaryInput: React.FC<Props> = ({ fieldTitle, placeholder, icon }) => {
+const PrimaryInput: React.FC<Props> = ({
+  label,
+  name,
+  size: _,
+  icon,
+  ...props
+}) => {
+  const [field, meta] = useField(name);
 
   return (
     <div className="forms-primary-select-activeon-light">
-      <div className="field-title x12px--bold">{fieldTitle}</div>
+      <div className="field-title x12px--bold">{label}</div>
       <div className="overlap-group">
-        <div className="placeholder x14px--regular">{placeholder}</div>
-        <div className="icon materialiconsoutlined-regular-normal-black-18px">{icon}</div>
+        <input {...props} {...field} className="placeholder x14px--regular" />
+        <div className="icon materialiconsoutlined-regular-normal-black-18px">
+          {icon}
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default PrimaryInput;
