@@ -1,18 +1,18 @@
 import React from "react";
-import "./PrimaryButton.css";
+import "./SignInButton.css";
 
 interface Props {
   children: React.ReactNode;
 }
 
-const PrimaryButton: React.FC<Props> = ({ children }) => {
+const SignInButton: React.FC<Props> = ({ children }) => {
   return (
     <div className="buttons-label-filled-active-on-light">
-      <div className="overlap-group2">
+      <button type="submit" className="overlap-group2">
         <div className="label label--14px">{children}</div>
-      </div>
+      </button>
     </div>
   );
 };
 
-export default PrimaryButton;
+export default SignInButton;

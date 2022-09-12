@@ -1,10 +1,9 @@
 import { Form, Formik } from "formik";
 import React from "react";
 import Checkbox from "../components/Checkbox";
-import PrimaryButton from "../components/PrimaryButton";
+import SignInButton from "../components/SignInButton";
 import PrimaryInput from "../components/PrimaryInput";
 import SecondaryButton from "../components/SecondaryButton";
-import SecondaryInput from "../components/SecondaryInput";
 import "./Login.css";
 
 function Login() {
@@ -26,12 +25,12 @@ function Login() {
                   label="Email"
                   name="email"
                   placeholder="catherine.shaw@gmail.com"
-                  icon=""
                 />
-                <SecondaryInput
-                  fieldTitle="Password"
-                  placeholder="Enter your password"
-                  icon=""
+                <PrimaryInput
+                  label="Password"
+                  name="password"
+                  placeholder="Password..."
+                  type="password"
                 />
                 <div className="flex-row">
                   <Checkbox>Remember me</Checkbox>
@@ -39,7 +38,7 @@ function Login() {
                     Recover password
                   </div>
                 </div>
-                <PrimaryButton>Sign in</PrimaryButton>
+                <SignInButton>Sign in</SignInButton>
                 <div className="or">
                   <img
                     alt=""

@@ -5,6 +5,7 @@
     flex-direction: column;
     min-height: 92px;
     width: 437px;
+    margin: 5px;
 }
 
 .field-title {
