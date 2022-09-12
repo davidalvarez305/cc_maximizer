@@ -1,0 +1,54 @@
+.forms-primary-select-restingon-light {
+    align-items: flex-start;
+    border: 0px none;
+    display: flex;
+    flex-direction: column;
+    margin-top: 18px;
+    min-height: 92px;
+    width: 437px;
+}
+
+.field-title-1 {
+    color: var(--x000000primary);
+    font-weight: 700;
+    line-height: 18px;
+    margin-top: -2px;
+    min-height: 18px;
+    white-space: nowrap;
+}
+
+.overlap-group1 {
+    align-items: flex-start;
+    border: 1px solid;
+    border-color: #cfdbd56b;
+    border-radius: 8px;
+    display: flex;
+    height: 66px;
+    margin-left: -1px;
+    margin-top: 11px;
+    min-width: 439px;
+    padding: 21px 20px;
+}
+
+.placeholder-1 {
+    color: var(--x747a80);
+    font-weight: 400;
+    line-height: 21px;
+    min-height: 21px;
+    min-width: 137px;
+    white-space: nowrap;
+}
+
+.icon-1 {
+    align-self: center;
+    color: var(--x747a80);
+    font-family: var(--font-family-material_icons_outlined-regular);
+    font-size: var(--font-size-l);
+    font-weight: 400;
+    letter-spacing: 0;
+    margin-bottom: 2.0px;
+    margin-left: 244px;
+    min-height: 18px;
+    min-width: 18px;
+    text-align: center;
+}
