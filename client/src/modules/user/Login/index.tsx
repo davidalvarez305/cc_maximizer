@@ -5,6 +5,7 @@ import SignInButton from "../components/SignInButton";
 import PrimaryInput from "../components/PrimaryInput";
 import SecondaryButton from "../components/SecondaryButton";
 import "./Login.css";
+import { Link } from "react-router-dom";
 
 function Login() {
   return (
@@ -35,7 +36,7 @@ function Login() {
                 <div className="flex-row">
                   <Checkbox>Remember me</Checkbox>
                   <div className="recover-password x12px--bold">
-                    Recover password
+                    <Link to={"/forgot-password"}>Forgot Password</Link>
                   </div>
                 </div>
                 <SignInButton>Sign in</SignInButton>
@@ -61,7 +62,7 @@ function Login() {
               You don’t have an account?
             </p>
             <div className="create-an-account label--14px">
-              Create an account
+              <Link to={"/register"}>Create an account</Link>
             </div>
           </div>
         </div>
