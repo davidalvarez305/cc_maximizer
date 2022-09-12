@@ -14,7 +14,7 @@ const SecondaryButton: React.FC<Props> = ({ children, icon, label }) => {
         <div className="icon-2 materialiconsoutlined-regular-normal-black-18px">
           {icon}
         </div>
-        <p className="lable-1 lable--14px">{label}</p>
+        <p className="label-1 lable--14px">{label}</p>
       </div>
     </div>
   );

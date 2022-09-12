@@ -9,7 +9,7 @@ const PrimaryButton: React.FC<Props> = ({ children }) => {
   return (
     <div className="buttons-label-filled-active-on-light">
       <div className="overlap-group2">
-        <div className="lable lable--14px">{children}</div>
+        <div className="label label--14px">{children}</div>
       </div>
     </div>
   );

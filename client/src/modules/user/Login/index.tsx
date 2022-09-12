@@ -52,7 +52,7 @@ function Login() {
             <p className="you-dont-have-an-ac x14px--regular">
               You don’t have an account?
             </p>
-            <div className="create-an-account lable--14px">
+            <div className="create-an-account label--14px">
               Create an account
             </div>
           </div>
