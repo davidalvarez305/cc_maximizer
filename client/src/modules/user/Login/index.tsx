@@ -6,8 +6,26 @@ import PrimaryInput from "../../../components/PrimaryInput";
 import SecondaryButton from "../../../components/SecondaryButton";
 import "./Login.css";
 import { Link } from "react-router-dom";
+import useFetch from "../../../hooks/useFetch";
+import { LOGIN_ROUTE } from "../../../constants";
+import RequestErrorMessage from "../../../components/RequestErrorMessage";
 
-function Login() {
+const Login: React.FC = () => {
+  const { makeRequest, isLoading, error } = useFetch();
+
+  function handleSubmit(values: { email: string; password: string }) {
+    makeRequest(
+      {
+        url: LOGIN_ROUTE,
+        method: "POST",
+        data: values,
+      },
+      (res) => {
+        console.log(res.data.data);
+      }
+    );
+  }
+
   return (
     <div className="container-center-horizontal">
       <div className="registration-sign-in screen">
@@ -18,14 +36,14 @@ function Login() {
           </p>
           <Formik
             initialValues={{ email: "", password: "" }}
-            onSubmit={(values) => console.log(values)}
+            onSubmit={handleSubmit}
           >
             <Form>
               <div className="form">
                 <PrimaryInput
                   label="Email"
                   name="email"
-                  placeholder="catherine.shaw@gmail.com"
+                  placeholder="name@gmail.com"
                 />
                 <PrimaryInput
                   label="Password"
@@ -39,21 +57,8 @@ function Login() {
                     <Link to={"/forgot-password"}>Forgot Password</Link>
                   </div>
                 </div>
-                <SignInButton>Sign in</SignInButton>
-                <div className="or">
-                  <img
-                    alt=""
-                    className="line-2"
-                    src="https://anima-uploads.s3.amazonaws.com/projects/631ef96c30c5be89e49afb9c/releases/631ef971190c8b852614ea0e/img/line-2@2x.svg"
-                  />
-                  <div className="or-1 x14px--regular">or</div>
-                  <img
-                    alt=""
-                    className="line-2-copy"
-                    src="https://anima-uploads.s3.amazonaws.com/projects/631ef96c30c5be89e49afb9c/releases/631ef971190c8b852614ea0e/img/line-2-copy@2x.svg"
-                  />
-                </div>
-                <SecondaryButton icon="" label="Log in with QR code" />
+                <SignInButton disabled={isLoading}>Sign in</SignInButton>
+                {error.message.length > 0 && <RequestErrorMessage {...error} />}
               </div>
             </Form>
           </Formik>
@@ -110,6 +115,6 @@ function Login() {
       </div>
     </div>
   );
-}
+};
 
 export default Login;

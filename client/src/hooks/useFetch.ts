@@ -19,17 +19,19 @@ export default function useFetch() {
       responseType: config.responseType ? config.responseType : undefined,
       withCredentials: true,
       data: config.data ? config.data : null,
-      validateStatus: function (status) {
-        return status <= 500;
-      },
     })
       .then((response) => {
         setIsLoading(false);
         callback(response);
       })
       .catch((error) => {
-        setIsLoading(false);
-        setError({ message: error.message });
+        if (error.response && error.response.data) {
+          setIsLoading(false);
+          setError({ message: error.response.data.data });
+        } else {
+          setIsLoading(false);
+          setError({ message: error.message });
+        }
       });
   };
 

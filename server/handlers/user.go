@@ -33,7 +33,7 @@ func CreateUser(c *fiber.Ctx) error {
 
 	if err != nil {
 		return c.Status(500).JSON(fiber.Map{
-			"error": err,
+			"data": err,
 		})
 	}
 
@@ -108,7 +108,7 @@ func Login(c *fiber.Ctx) error {
 
 	if err != nil {
 		return c.Status(400).JSON(fiber.Map{
-			"error": "Bad Input.",
+			"data": "Bad Input.",
 		})
 	}
 
@@ -116,7 +116,7 @@ func Login(c *fiber.Ctx) error {
 
 	if result.Error != nil {
 		return c.Status(404).JSON(fiber.Map{
-			"error": "Incorrect username.",
+			"data": "Incorrect username.",
 		})
 	}
 
@@ -124,7 +124,7 @@ func Login(c *fiber.Ctx) error {
 
 	if err != nil {
 		return c.Status(400).JSON(fiber.Map{
-			"error": "Incorrect password.",
+			"data": "Incorrect password.",
 		})
 	}
 
