@@ -1,9 +1,9 @@
 import { Form, Formik } from "formik";
 import React from "react";
-import Checkbox from "../components/Checkbox";
-import SignInButton from "../components/SignInButton";
-import PrimaryInput from "../components/PrimaryInput";
-import SecondaryButton from "../components/SecondaryButton";
+import Checkbox from "../../../components/Checkbox";
+import SignInButton from "../../../components/SignInButton";
+import PrimaryInput from "../../../components/PrimaryInput";
+import SecondaryButton from "../../../components/SecondaryButton";
 import "./Login.css";
 import { Link } from "react-router-dom";
 
