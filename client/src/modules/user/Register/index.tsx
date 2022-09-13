@@ -5,17 +5,21 @@ import SignInButton from "../../../components/SignInButton";
 import PrimaryInput from "../../../components/PrimaryInput";
 import { Link } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
-import { LOGIN_ROUTE } from "../../../constants";
+import { REGISTER_ROUTE } from "../../../constants";
 import RequestErrorMessage from "../../../components/RequestErrorMessage";
 import LoginOrRegister from "../LoginOrRegister";
 
-const Login: React.FC = () => {
+const Register: React.FC = () => {
   const { makeRequest, isLoading, error } = useFetch();
 
-  function handleSubmit(values: { email: string; password: string }) {
+  function handleSubmit(values: {
+    username: string;
+    email: string;
+    password: string;
+  }) {
     makeRequest(
       {
-        url: LOGIN_ROUTE,
+        url: REGISTER_ROUTE,
         method: "POST",
         data: values,
       },
@@ -27,18 +31,23 @@ const Login: React.FC = () => {
 
   return (
     <LoginOrRegister
-      h1Text="Sign In"
-      h1Subtext="Enter your account details"
-      bottomTextOne="Don't have an account?"
-      bottomLinkText="Register."
-      bottomLinkDestination="register"
+      h1Text="Sign Up"
+      h1Subtext="Create your account by entering your details."
+      bottomTextOne="Already have an account?"
+      bottomLinkText="Login."
+      bottomLinkDestination="login"
     >
       <Formik
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ username: "", email: "", password: "" }}
         onSubmit={handleSubmit}
       >
         <Form>
           <div className="form">
+            <PrimaryInput
+              label="Username"
+              name="username"
+              placeholder="Username..."
+            />
             <PrimaryInput
               label="Email"
               name="email"
@@ -66,4 +75,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default Register;

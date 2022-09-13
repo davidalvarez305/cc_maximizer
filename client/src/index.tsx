@@ -5,6 +5,8 @@ import { App } from "./App";
 import UserProvider from "./context/UserContext";
 import "./global.css";
 import Login from "./screens/Login";
+import Register from "./screens/Register";
+import ForgotPassword from "./screens/ForgotPassword";
 import "./styleguide.css";
 
 const container = document.getElementById("root");
@@ -18,6 +20,8 @@ root.render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
         </Routes>
       </UserProvider>
     </BrowserRouter>

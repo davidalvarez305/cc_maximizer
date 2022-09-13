@@ -4,24 +4,34 @@ import { Link } from "react-router-dom";
 
 interface Props {
   children: React.ReactNode;
+  h1Text: string;
+  h1Subtext: string | React.ReactNode;
+  bottomTextOne: string;
+  bottomLinkText: string;
+  bottomLinkDestination: string;
 }
 
-const LoginOrRegister: React.FC<Props> = ({ children }) => {
+const LoginOrRegister: React.FC<Props> = ({
+  children,
+  h1Text,
+  h1Subtext,
+  bottomLinkText,
+  bottomTextOne,
+  bottomLinkDestination,
+}) => {
   return (
     <div className="container-center-horizontal">
       <div className="registration-sign-in screen">
         <div className="flex-col">
-          <h1 className="title-1 heading--h1">Sign in</h1>
-          <p className="enter-your-account-d x14px--regular">
-            Enter your account details or use QR code
-          </p>
+          <h1 className="title-1 heading--h1">{h1Text}</h1>
+          <p className={typeof h1Subtext === "string" ? "enter-your-account-d x14px--regular" : undefined}>{h1Subtext}</p>
           {children}
           <div className="link-1">
             <p className="you-dont-have-an-ac x14px--regular">
-              You don’t have an account?
+              {bottomTextOne}
             </p>
             <div className="create-an-account label--14px">
-              <Link to={"/register"}>Create an account</Link>
+              <Link to={"/" + bottomLinkDestination}>{bottomLinkText}</Link>
             </div>
           </div>
         </div>

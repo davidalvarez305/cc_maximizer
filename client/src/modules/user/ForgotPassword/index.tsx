@@ -5,17 +5,17 @@ import SignInButton from "../../../components/SignInButton";
 import PrimaryInput from "../../../components/PrimaryInput";
 import { Link } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
-import { REGISTER_ROUTE } from "../../../constants";
+import { LOGIN_ROUTE } from "../../../constants";
 import RequestErrorMessage from "../../../components/RequestErrorMessage";
 import LoginOrRegister from "../LoginOrRegister";
 
-const Register: React.FC = () => {
+const ForgotPassword: React.FC = () => {
   const { makeRequest, isLoading, error } = useFetch();
 
-  function handleSubmit(values: { email: string; password: string }) {
+  function handleSubmit(values: { email: string }) {
     makeRequest(
       {
-        url: REGISTER_ROUTE,
+        url: LOGIN_ROUTE,
         method: "POST",
         data: values,
       },
@@ -26,23 +26,27 @@ const Register: React.FC = () => {
   }
 
   return (
-    <LoginOrRegister>
-      <Formik
-        initialValues={{ email: "", password: "" }}
-        onSubmit={handleSubmit}
-      >
+    <LoginOrRegister
+      h1Text="Forgot Password?"
+      h1Subtext={
+        <p className="enter-your-account-d x14px--regular">
+          Enter your email below, you will receive an email with instructions <br />
+          on how to reset your password in a few minutes. You can also set a new <br />
+          password if you’ve never set one before.
+        </p>
+      }
+      bottomTextOne="Don't have an account?"
+      bottomLinkText="Register."
+      bottomLinkDestination="register"
+    >
+      <Formik initialValues={{ email: "" }} onSubmit={handleSubmit}>
         <Form>
           <div className="form">
             <PrimaryInput
               label="Email"
               name="email"
-              placeholder="name@gmail.com"
-            />
-            <PrimaryInput
-              label="Password"
-              name="password"
-              placeholder="Password..."
-              type="password"
+              placeholder="Email..."
+              type="email"
             />
             <div className="flex-row">
               <Checkbox>Remember me</Checkbox>
@@ -50,7 +54,7 @@ const Register: React.FC = () => {
                 <Link to={"/forgot-password"}>Forgot Password</Link>
               </div>
             </div>
-            <SignInButton disabled={isLoading}>Sign in</SignInButton>
+            <SignInButton disabled={isLoading}>Start Recovery</SignInButton>
             {error.message.length > 0 && <RequestErrorMessage {...error} />}
           </div>
         </Form>
@@ -59,4 +63,4 @@ const Register: React.FC = () => {
   );
 };
 
-export default Register;
+export default ForgotPassword;
