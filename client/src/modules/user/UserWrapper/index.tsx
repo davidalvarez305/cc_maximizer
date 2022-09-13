@@ -1,5 +1,5 @@
 import React from "react";
-import "./LoginOrRegister.css";
+import "./UserWrapper.css";
 import { Link } from "react-router-dom";
 
 interface Props {

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
 import { LOGIN_ROUTE } from "../../../constants";
 import RequestErrorMessage from "../../../components/RequestErrorMessage";
-import LoginOrRegister from "../LoginOrRegister";
+import LoginOrRegister from "../UserWrapper";
 
 const ForgotPassword: React.FC = () => {
   const { makeRequest, isLoading, error } = useFetch();
