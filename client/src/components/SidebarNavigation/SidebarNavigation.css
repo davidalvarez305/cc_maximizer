@@ -1,0 +1,74 @@
+.navigation-web-sideb-1 {
+    align-items: center;
+    border: 0px none;
+    display: flex;
+    height: 48px;
+    margin-top: 11px;
+    min-width: 256px;
+    padding: 0 30px;
+}
+
+.icon {
+    letter-spacing: 0;
+    min-height: 22px;
+    min-width: 22px;
+    text-align: center;
+}
+
+.link-1 {
+    color: var(--x747a80);
+    font-weight: 700;
+    line-height: 21px;
+    margin-bottom: 0.86px;
+    margin-left: 14px;
+    min-height: 21px;
+    min-width: 75px;
+    white-space: nowrap;
+}
+
+.navigation-web-sideb-1.navigation-web-sideb,
+.navigation-web-sideb-1.navigation-web-sideb-4,
+.navigation-web-sideb-1.navigation-web-sideb-5,
+.navigation-web-sideb-1.navigation-web-sideb-6,
+.navigation-web-sideb-1.navigation-web-sideb-7,
+.navigation-web-sideb-1.navigation-web-sideb-8 {
+    margin-top: 2px;
+}
+
+.navigation-web-sideb-1.navigation-web-sideb-4 .link-1 {
+    min-width: 41px;
+}
+
+.navigation-web-sideb-1.navigation-web-sideb-5 .link-1 {
+    min-width: 90px;
+}
+
+.navigation-web-sideb-1.navigation-web-sideb-6 .link-1 {
+    min-width: 61px;
+}
+
+.navigation-web-sideb-1.navigation-web-sideb-7 .link-1 {
+    min-width: 63px;
+}
+
+.navigation-web-sideb-1.navigation-web-sideb-8 .link-1 {
+    min-width: 53px;
+}
+
+.navigation-web-sideb-1.navigation-web-sideb .link-1 {
+    min-width: 55px;
+}
+
+.navigation-web-sideb-1.navigation-web-sideb-2 {
+    margin-top: 2px;
+    min-width: 266px;
+}
+
+.navigation-web-sideb-1.navigation-web-sideb-2 .link-1,
+.navigation-web-sideb-1.navigation-web-sideb-3 .link-1 {
+    min-width: 106px;
+}
+
+.navigation-web-sideb-1.navigation-web-sideb-3 {
+    margin-top: 157px;
+}

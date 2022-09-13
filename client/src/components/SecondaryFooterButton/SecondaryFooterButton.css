@@ -1,0 +1,33 @@
+.buttons-label-icon-t {
+    align-items: flex-start;
+    border: 0px none;
+    display: flex;
+    height: 46px;
+    justify-content: flex-end;
+    margin-left: 425px;
+    min-width: 73px;
+    padding: 12px 0;
+}
+
+.link-6 {
+    align-items: center;
+    border: 0px none;
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    width: fit-content;
+}
+
+.label-3 {
+    color: var(--x000000primary);
+    font-weight: 700;
+    line-height: 21px;
+    white-space: nowrap;
+    width: fit-content;
+}
+
+.icon-3 {
+    letter-spacing: 0;
+    text-align: center;
+    width: fit-content;
+}
