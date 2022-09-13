@@ -15,7 +15,7 @@ const TopNavigation: React.FC<Props> = ({
   searchIcon,
   typeToSearch,
   img,
-  iconButton
+  iconButton,
 }) => {
   return (
     <div className="navigation-web-top-bar-on-light">
@@ -25,7 +25,7 @@ const TopNavigation: React.FC<Props> = ({
           <div className="search-icon">{searchIcon}</div>
           <div className="type-to-search x12px--medium">{typeToSearch}</div>
         </div>
-        <IconButton>{iconButton}</IconButton>
+        <IconButton className="">{iconButton}</IconButton>
         <div className="img-2" style={{ backgroundImage: `url(${img})` }}></div>
       </div>
     </div>

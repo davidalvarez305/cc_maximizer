@@ -1,35 +1,22 @@
 import React from "react";
-import NavigationWebSidebarMenuOnLight from "../NavigationWebSidebarMenuOnLight";
-import NavigationWebTopBarOnLight from "../NavigationWebTopBarOnLight";
-import ButtonsIconLabelTransparentActiveOn from "../ButtonsIconLabelTransparentActiveOn";
-import NavigationWebFooterOnLight from "../NavigationWebFooterOnLight";
+import Sidebar from "../../components/Sidebar";
+import TopNavigation from "../../components/TopNavigation";
+import SecondaryButton from "../../components/SecondaryButton";
+import Footer from "../../components/Footer";
 import "./PrimaryLayout.css";
 
-function PrimaryLayout(props) {
-  const {
-    title,
-    applyTodayAndStar,
-    navigationWebSidebarMenuOnLightProp,
-    navigationWebTopBarOnLightProps,
-    buttonsIconLabelTransparentActiveOn,
-    navigationWebFooterOnLightProps,
-  } = props;
-
+function PrimaryLayout() {
   return (
     <div className="container-center-horizontal">
       <div className="accounts-empty screen">
-        <NavigationWebSidebarMenuOnLight
-          {...navigationWebSidebarMenuOnLightProp}
-        />
+        <Sidebar />
         <div className="flex-col">
-          <NavigationWebTopBarOnLight
-            title={navigationWebTopBarOnLightProps.title}
-            searchIcon={navigationWebTopBarOnLightProps.searchIcon}
-            typeToSearch={navigationWebTopBarOnLightProps.typeToSearch}
-            img={navigationWebTopBarOnLightProps.img}
-            buttonsIconOutlineRestingOnLightPro={
-              navigationWebTopBarOnLightProps.buttonsIconOutlineRestingOnLightPro
-            }
+          <TopNavigation
+            title={"Yo yo"}
+            searchIcon={"Yo yo"}
+            typeToSearch={"Yo yo"}
+            img={"Yo yo"}
+            iconButton={"Yo yo"}
           />
           <div className="overlap-group1">
             <img
@@ -131,27 +118,18 @@ function PrimaryLayout(props) {
             />
           </div>
           <div className="title">
-            <h1 className="title-1 heading--h1">{title}</h1>
+            <h1 className="title-1 heading--h1">{"title"}</h1>
             <p className="apply-today-and-star x14px--regular">
-              {applyTodayAndStar}
+              {"applyTodayAndStar"}
             </p>
           </div>
-          <ButtonsIconLabelTransparentActiveOn
-            text1={buttonsIconLabelTransparentActiveOn.text1}
-            lable={buttonsIconLabelTransparentActiveOn.lable}
-          />
-          <NavigationWebFooterOnLight
-            privacyPolicy={navigationWebFooterOnLightProps.privacyPolicy}
-            license={navigationWebFooterOnLightProps.license}
-            api={navigationWebFooterOnLightProps.api}
-            helpCenter={navigationWebFooterOnLightProps.helpCenter}
-            x2022AllRightsRe={navigationWebFooterOnLightProps.x2022AllRightsRe}
-            buttonsLabelIconTransparentRestingO={
-              navigationWebFooterOnLightProps.buttonsLabelIconTransparentRestingO
-            }
-            buttonsIconOutlineRestingOnLightPro={
-              navigationWebFooterOnLightProps.buttonsIconOutlineRestingOnLightPro
-            }
+          <SecondaryButton icon={""} label={""} />
+          <Footer
+            privacyPolicy={"/privacy-policy"}
+            license={"/license"}
+            api={"/api"}
+            helpCenter={"/helpCenter"}
+            x2022AllRightsRe={"/x2022AllRightsRe"}
           />
         </div>
       </div>
