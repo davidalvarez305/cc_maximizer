@@ -1,6 +1,6 @@
 import React from "react";
-import SidebarFlagIcon from "../SidebarFlagIcon";
 import "./SidebarBalanceItem.css";
+import { ReactComponent as USDFlag } from "../../assets/usd_flag.svg";
 
 interface Props {
   link: string;
@@ -10,9 +10,11 @@ interface Props {
 const SidebarBalanceItem: React.FC<Props> = ({ link, icon }) => {
   return (
     <div className="navigation-web-sideb-10">
-      <div className="lable">
-        <SidebarFlagIcon src={icon} />
-        <div className="link-3 lable--14px">{link}</div>
+      <div className="label">
+        <div className="buttons-logo-flag-usd">
+          <USDFlag />
+        </div>
+        <div className="link-3 label--14px">{link}</div>
       </div>
     </div>
   );

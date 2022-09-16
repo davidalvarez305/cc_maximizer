@@ -6,16 +6,31 @@ import "./Sidebar.css";
 function Sidebar() {
   const navLinks = [
     {
+      icon: "credit_card.svg",
+      link: "Credit Cards",
+    },
+    {
       icon: "",
-      link: "",
-      className: "",
+      link: "Link One",
+    },
+    {
+      icon: "",
+      link: "Link One",
     },
   ];
 
   const balances = [
     {
+      icon: "usd_flag.svg",
+      link: "100,050.75 USD",
+    },
+    {
       icon: "",
-      link: "",
+      link: "2310.40 EUR",
+    },
+    {
+      icon: "",
+      link: "9455.50 GBP",
     },
   ];
 
@@ -29,21 +44,21 @@ function Sidebar() {
       <div className="navigation">
         <div className="navigation-1 x14px--light">{"Navigation"}</div>
         {navLinks.map((link) => (
-          <React.Fragment key={link.className}>
+          <React.Fragment key={link.link}>
             <SidebarNavigation {...link} />
           </React.Fragment>
         ))}
       </div>
       <div className="balance">
-        <div className="balances x14px--light">{"Balances"}</div>
+        <div className="balances x14px--light">{"Budgets"}</div>
         {balances.map((balance) => (
           <React.Fragment key={balance.link}>
             <SidebarBalanceItem {...balance} />
           </React.Fragment>
         ))}
-        <SidebarNavigation icon={""} link={"Open A Balance"} className={""} />
+        <SidebarNavigation icon={""} link={"Create A Budget"} />
       </div>
-      <SidebarNavigation icon={""} link={"Profile Settings"} className={""} />
+      <SidebarNavigation icon={""} link={"Profile Settings"} />
     </div>
   );
 }
