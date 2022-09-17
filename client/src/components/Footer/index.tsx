@@ -36,7 +36,7 @@ const Footer: React.FC<Props> = ({
           </p>
         </div>
         <SecondaryFooterButton label={""} icon={""} />
-        <FooterIcon className={""}>{'icon'}</FooterIcon>
+        <FooterIcon>{"icon"}</FooterIcon>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import TopNavigation from "../../components/TopNavigation";
 import SecondaryButton from "../../components/SecondaryButton";
 import Footer from "../../components/Footer";
 import "./PrimaryLayout.css";
+import { SearchIcon } from "../../assets/SearchIcon";
 
 interface Props {
   children: React.ReactNode;
@@ -15,11 +16,12 @@ const PrimaryLayout: React.FC<Props> = ({ children }) => {
         <Sidebar />
         <div className="flex-col">
           <TopNavigation
-            title={"Yo yo"}
-            searchIcon={"Yo yo"}
-            typeToSearch={"Yo yo"}
-            img={"Yo yo"}
-            iconButton={"Yo yo"}
+            screenName={"Welcome"}
+            searchIcon={<SearchIcon />}
+            img={
+              "https://southfloridaathleticclub.s3.amazonaws.com/media/misc/default.webp"
+            }
+            handleNavigationSubmit={(values) => console.log(values)}
           />
           <div className="overlap-group1">{children}</div>
           <SecondaryButton icon={""} label={""} />

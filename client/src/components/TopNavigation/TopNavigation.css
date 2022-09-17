@@ -25,7 +25,7 @@
     line-height: 24px;
     margin-bottom: 4.0px;
     min-height: 24px;
-    min-width: 87px;
+    min-width: 98px;
     white-space: nowrap;
 }
 
@@ -36,17 +36,13 @@
     border-radius: 8px;
     display: flex;
     height: 40px;
-    margin-left: 524px;
+    margin-left: 513px;
     overflow: hidden;
     padding: 9px 12px;
     width: 307px;
 }
 
 .search-icon {
-    color: var(--x000000primary);
-    font-family: var(--font-family-material_icons_outlined-regular);
-    font-size: var(--font-size-xl);
-    font-weight: 400;
     letter-spacing: 0;
     min-height: 20px;
     min-width: 20px;

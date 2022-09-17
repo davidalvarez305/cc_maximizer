@@ -1,4 +1,6 @@
 import { useContext } from "react";
+import { SearchIcon } from "./assets/SearchIcon";
+import TopNavigation from "./components/TopNavigation";
 import { UserContext } from "./context/UserContext";
 import useFetch from "./hooks/useFetch";
 import PrimaryLayout from "./layout/Primary";
