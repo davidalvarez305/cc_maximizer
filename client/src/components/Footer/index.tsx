@@ -1,6 +1,4 @@
 import React from "react";
-import SecondaryFooterButton from "../SecondaryFooterButton";
-import FooterIcon from "../IconButton";
 import "./Footer.css";
 import { Link } from "react-router-dom";
 
@@ -23,7 +21,7 @@ const Footer: React.FC = () => {
       path: "/help",
     },
   ];
-  const CURRENT_YEAR = new Date().getFullYear()
+  const CURRENT_YEAR = new Date().getFullYear();
   return (
     <div className="navigation-web-footer-on-light">
       <img
@@ -44,8 +42,6 @@ const Footer: React.FC = () => {
             {CURRENT_YEAR + " All Rights Reserved"}
           </p>
         </div>
-        <SecondaryFooterButton label={""} icon={""} />
-        <FooterIcon>{"icon"}</FooterIcon>
       </div>
     </div>
   );
