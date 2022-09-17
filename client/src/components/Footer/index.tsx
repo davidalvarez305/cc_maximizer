@@ -2,22 +2,28 @@ import React from "react";
 import SecondaryFooterButton from "../SecondaryFooterButton";
 import FooterIcon from "../IconButton";
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
-interface Props {
-  privacyPolicy: string;
-  license: string;
-  api: string;
-  helpCenter: string;
-  x2022AllRightsRe: string;
-}
-
-const Footer: React.FC<Props> = ({
-  privacyPolicy,
-  license,
-  api,
-  helpCenter,
-  x2022AllRightsRe,
-}) => {
+const Footer: React.FC = () => {
+  const footerLinks = [
+    {
+      link: "privacy policy",
+      path: "/privacy-policy",
+    },
+    {
+      link: "license",
+      path: "/license",
+    },
+    {
+      link: "about",
+      path: "/about",
+    },
+    {
+      link: "help",
+      path: "/help",
+    },
+  ];
+  const CURRENT_YEAR = new Date().getFullYear()
   return (
     <div className="navigation-web-footer-on-light">
       <img
@@ -27,12 +33,15 @@ const Footer: React.FC<Props> = ({
       />
       <div className="flex-row">
         <div className="links">
-          <div className="links-item x12px--bold">{privacyPolicy}</div>
-          <div className="links-item x12px--bold">{license}</div>
-          <div className="links-item x12px--bold">{api}</div>
-          <div className="links-item x12px--bold">{helpCenter}</div>
+          {footerLinks.map(({ link, path }) => (
+            <Link to={path}>
+              <div key={path} className="links-item x12px--bold">
+                {link}
+              </div>
+            </Link>
+          ))}
           <p className="x2022-all-rights-re x12px--medium">
-            {x2022AllRightsRe}
+            {CURRENT_YEAR + " All Rights Reserved"}
           </p>
         </div>
         <SecondaryFooterButton label={""} icon={""} />

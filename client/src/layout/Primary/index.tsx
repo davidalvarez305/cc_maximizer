@@ -1,6 +1,5 @@
 import Sidebar from "../../components/Sidebar";
 import TopNavigation from "../../components/TopNavigation";
-import SecondaryButton from "../../components/SecondaryButton";
 import Footer from "../../components/Footer";
 import "./PrimaryLayout.css";
 import { SearchIcon } from "../../assets/SearchIcon";
@@ -24,14 +23,7 @@ const PrimaryLayout: React.FC<Props> = ({ children }) => {
             handleNavigationSubmit={(values) => console.log(values)}
           />
           <div className="overlap-group1">{children}</div>
-          <SecondaryButton icon={""} label={""} />
-          <Footer
-            privacyPolicy={"/privacy-policy"}
-            license={"/license"}
-            api={"/api"}
-            helpCenter={"/helpCenter"}
-            x2022AllRightsRe={"/x2022AllRightsRe"}
-          />
+          <Footer />
         </div>
       </div>
     </div>
