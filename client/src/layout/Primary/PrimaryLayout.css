@@ -3,9 +3,9 @@
     background-color: var(--ffffff--primary);
     border: 0px none;
     display: flex;
-    height: 1020px;
+    height: 100vh;
     position: relative;
-    width: 1440px;
+    width: 100vw;
 }
 
 .flex-col {
