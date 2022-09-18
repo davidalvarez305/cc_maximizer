@@ -7,7 +7,7 @@ type Props = React.DetailedHTMLProps<
   children: React.ReactNode;
 };
 
-const DarkButton: React.FC<Props> = ({ children, ...props }) => {
+const Button: React.FC<Props> = ({ children, ...props }) => {
   const styles = {
     buttonDarkLabel: {
       alignItems: "flex-start",
@@ -39,4 +39,4 @@ const DarkButton: React.FC<Props> = ({ children, ...props }) => {
   );
 };
 
-export default DarkButton;
+export default Button;

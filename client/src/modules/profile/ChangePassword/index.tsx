@@ -1,6 +1,6 @@
 import { Form, Formik } from "formik";
 import { useNavigate } from "react-router";
-import DarkButton from "../../../components/Button";
+import Button from "../../../components/Button";
 import PrimaryInput from "../../../components/PrimaryInput";
 import PrimaryLayout from "../../../layout/Primary";
 import "./ChangePassword.css";
@@ -19,7 +19,7 @@ const ChangePassword = () => {
         <Form>
           <div className="main-container">
             <PrimaryInput label={"New Password"} name={"newPassword"} />
-            <DarkButton type="submit">Submit</DarkButton>
+            <Button type="submit">Submit</Button>
           </div>
         </Form>
       </Formik>
