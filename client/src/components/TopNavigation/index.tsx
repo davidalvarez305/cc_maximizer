@@ -49,7 +49,6 @@ const TopNavigation: React.FC<Props> = ({
         <IconButton>
           <NotificationBell />
         </IconButton>
-
         <div className="img-2" style={{ backgroundImage: `url(${img})` }}></div>
       </div>
     </div>

@@ -9,6 +9,7 @@ import Register from "./screens/Register";
 import ForgotPassword from "./screens/ForgotPassword";
 import "./styleguide.css";
 import ProfileSettings from "./screens/ProfileSettings";
+import ChangePassword from "./screens/ChangePassword";
 
 const container = document.getElementById("root");
 if (!container) throw new Error("Failed to find the root element");
@@ -24,6 +25,7 @@ root.render(
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/profile-settings" element={<ProfileSettings />} />
+          <Route path="/change-password" element={<ChangePassword />} />
         </Routes>
       </UserProvider>
     </BrowserRouter>

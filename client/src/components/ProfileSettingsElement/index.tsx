@@ -1,35 +1,28 @@
 import React from "react";
-import RateElement from "../RateElement";
 import "./ProfileSettingsElement.css";
 import TextWithHeader from "../TextWithHeader";
 import TagElement from "../TagElement";
-import { DotsIcon } from "../../assets/DotsIcon";
+import { useNavigate } from "react-router";
 
 interface Props {
   icon: React.ReactNode;
 }
 
 const ProfileSettingsElement: React.FC<Props> = ({ icon }) => {
+  const navigate = useNavigate();
   return (
-    <div className={`account-web-item-v2-2`}>
-      <div className="icon-5 materialiconsoutlined-regular-normal-rolling-stone-20px">
-        {icon}
+    <div className={`account-web-item-v2-2 account-web-item-v2-1`}>
+      <div className={"options"}>
+        <div className="icon-5">{icon}</div>
+        <TextWithHeader
+          primaryHeader={"Change Password"}
+          subHeader={"Primary Account"}
+        />
       </div>
-      <TextWithHeader
-        primaryHeader={"Cumulative Deposit"}
-        subHeader={"Primary Account"}
+      <TagElement
+        tag={"Change"}
+        handleClick={() => navigate("/change-password")}
       />
-      <RateElement blocked={"1.5%"} className={"Unlimited"} />
-      <TextWithHeader
-        primaryHeader={"Cumulative Deposit"}
-        subHeader={"Primary Account"}
-      />
-      <TextWithHeader
-        primaryHeader={"Cumulative Deposit"}
-        subHeader={"Primary Account"}
-      />
-      <TagElement tag={"Today"} />
-      <DotsIcon />
     </div>
   );
 };
