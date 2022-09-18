@@ -1,5 +1,4 @@
 import React from "react";
-import SidebarBalanceItem from "../SidebarElement";
 import "./Sidebar.css";
 import { CreditCardIcon } from "../../assets/CreditCardIcon";
 import { USDFlagIcon } from "../../assets/USDFlagIcon";
@@ -7,8 +6,11 @@ import SidebarElement from "../SidebarElement";
 import { ReportsIcon } from "../../assets/ReportsIcon";
 import { PlusIcon } from "../../assets/PlusIcon";
 import { BarsIcon } from "../../assets/BarsIcon";
+import { SettingsIcon } from "../../assets/SettingsIcon";
+import { useNavigate } from "react-router";
 
 function Sidebar() {
+  const navigate = useNavigate();
   const navLinks = [
     {
       icon: <CreditCardIcon />,
@@ -50,7 +52,7 @@ function Sidebar() {
         <div className="navigation-1 x14px--light">{"Navigation"}</div>
         {navLinks.map((link) => (
           <React.Fragment key={link.link}>
-            <SidebarBalanceItem {...link} />
+            <SidebarElement handleClick={() => navigate(link.link)} {...link} />
           </React.Fragment>
         ))}
       </div>
@@ -58,12 +60,23 @@ function Sidebar() {
         <div className="balances x14px--light">{"Budgets"}</div>
         {balances.map((balance) => (
           <React.Fragment key={balance.link}>
-            <SidebarBalanceItem {...balance} />
+            <SidebarElement
+              handleClick={() => navigate(balance.link)}
+              {...balance}
+            />
           </React.Fragment>
         ))}
-        <SidebarElement icon={<PlusIcon />} link={"Create A Budget"} />
+        <SidebarElement
+          handleClick={() => navigate("/budgets")}
+          icon={<PlusIcon />}
+          link={"Create A Budget"}
+        />
       </div>
-      <SidebarElement icon={<PlusIcon />} link={"Profile Settings"} />
+      <SidebarElement
+        handleClick={() => navigate("/profile-settings")}
+        icon={<SettingsIcon />}
+        link={"Profile Settings"}
+      />
     </div>
   );
 }
