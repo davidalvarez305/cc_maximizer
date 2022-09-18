@@ -13,7 +13,13 @@ const ProfileSettings: React.FC = () => {
       path: "/change-password",
     },
     {
-      icon: <SettingsIcon />,
+      icon: (
+        <img
+          className="img-2"
+          src="https://southfloridaathleticclub.s3.amazonaws.com/media/misc/default.webp"
+          alt="me"
+        />
+      ),
       primaryHeader: "Change Profile Picture",
       subHeader: "Get a new look",
       path: "/profile-picture",
