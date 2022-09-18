@@ -6,16 +6,17 @@ import { SearchIcon } from "../../assets/SearchIcon";
 
 interface Props {
   children: React.ReactNode;
+  screenName: string;
 }
 
-const PrimaryLayout: React.FC<Props> = ({ children }) => {
+const PrimaryLayout: React.FC<Props> = ({ children, screenName }) => {
   return (
     <div className="container-center-horizontal">
       <div className="accounts-empty screen">
         <Sidebar />
         <div className="flex-col">
           <TopNavigation
-            screenName={"Welcome"}
+            screenName={screenName}
             searchIcon={<SearchIcon />}
             img={
               "https://southfloridaathleticclub.s3.amazonaws.com/media/misc/default.webp"
