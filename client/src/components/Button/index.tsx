@@ -1,40 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
+import "./Button.css";
 
 type Props = React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 > & {
   children: React.ReactNode;
+  className: "Dark" | "Light" | "Blue" | "LightBlue";
 };
 
-const Button: React.FC<Props> = ({ children, ...props }) => {
-  const styles = {
-    button: {
-      alignItems: "flex-start",
-      backgroundColor: "#000000",
-      borderRadius: "8px",
-      display: "flex",
-      height: "56px",
-      justifyContent: "flex-end",
-      minWidth: "125px",
-      padding: "17px 43px",
-    },
-    label: {
-      color: "rgba(255, 255, 255, 1)",
-      fontWeight: 700,
-      lineHeight: "21px",
-      minHeight: "21px",
-      minWidth: "38px",
-    },
+const Button: React.FC<Props> = ({ children, className, ...props }) => {
+  const [isHovering, setIsHovering] = useState(false);
+  const buttonOptions = {
+    Dark: "button-dark",
+    Light: "button-light",
+    Blue: "button-blue",
+    LightBlue: "button-light",
+  };
+
+  const labelOptions = {
+    Dark: "label-dark",
+    Light: "label-light",
+    Blue: "label-dark",
+    LightBlue: "label-light",
   };
 
   return (
-    <button {...props} style={{ ...styles.button }}>
-      <div
-        style={{ ...styles.label, textAlign: "center", whiteSpace: "nowrap" }}
-      >
-        {children}
-      </div>
+    <button
+      style={{
+        cursor: isHovering ? "pointer" : undefined,
+      }}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+      {...props}
+      className={buttonOptions[className]}
+    >
+      <div className={labelOptions[className]}>{children}</div>
     </button>
   );
 };

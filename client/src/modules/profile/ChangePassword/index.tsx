@@ -19,7 +19,9 @@ const ChangePassword = () => {
         <Form>
           <div className="main-container">
             <PrimaryInput label={"New Password"} name={"newPassword"} />
-            <Button type="submit">Submit</Button>
+            <Button className="Dark" type="submit">
+              Submit
+            </Button>
           </div>
         </Form>
       </Formik>

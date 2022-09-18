@@ -3,6 +3,8 @@ import React, { ChangeEvent, useState } from "react";
 import Button from "../../../components/Button";
 import PrimaryLayout from "../../../layout/Primary";
 import "./ProfilePicture.css";
+import { FiSend } from "react-icons/fi";
+import { GrClose } from "react-icons/gr";
 
 const ProfilePicture = () => {
   const [isHovering, setIsHovering] = useState(false);
@@ -54,7 +56,7 @@ const ProfilePicture = () => {
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
               >
-                Upload Image
+                Set Image
               </label>
               <input
                 style={{ display: "none" }}
@@ -63,11 +65,32 @@ const ProfilePicture = () => {
                 type="file"
                 accept="image/*"
               />
-              {image && <Button>Upload</Button>}
+              {image && (
+                <Button className="LightBlue">
+                  <div className="upload-button">
+                    Upload
+                    <FiSend />
+                  </div>
+                </Button>
+              )}
             </div>
           </Form>
         </Formik>
-        {image && <div>{image.name}</div>}
+        {image && (
+          <div className="close-button">
+            {image.name}{" "}
+            <div
+              onClick={() => setImage(undefined)}
+              style={{
+                cursor: isHovering ? "pointer" : undefined,
+              }}
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
+            >
+              <GrClose size={25} color={"#FF0000"} />
+            </div>
+          </div>
+        )}
       </div>
     </PrimaryLayout>
   );
