@@ -32,8 +32,8 @@ const Footer: React.FC = () => {
       <div className="flex-row">
         <div className="links">
           {footerLinks.map(({ link, path }) => (
-            <Link to={path}>
-              <div key={path} className="links-item x12px--bold">
+            <Link key={path} to={path}>
+              <div className="links-item x12px--bold">
                 {link}
               </div>
             </Link>

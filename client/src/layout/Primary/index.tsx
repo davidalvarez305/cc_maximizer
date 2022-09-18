@@ -12,7 +12,7 @@ interface Props {
 const PrimaryLayout: React.FC<Props> = ({ children, screenName }) => {
   return (
     <div className="container-center-horizontal">
-      <div className="accounts-empty screen">
+      <div className="accounts-empty">
         <Sidebar />
         <div className="flex-col">
           <TopNavigation
