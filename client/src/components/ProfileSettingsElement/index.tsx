@@ -6,23 +6,25 @@ import { useNavigate } from "react-router";
 
 interface Props {
   icon: React.ReactNode;
+  primaryHeader: string;
+  subHeader: string;
+  path: string;
 }
 
-const ProfileSettingsElement: React.FC<Props> = ({ icon }) => {
+const ProfileSettingsElement: React.FC<Props> = ({
+  icon,
+  primaryHeader,
+  subHeader,
+  path,
+}) => {
   const navigate = useNavigate();
   return (
     <div className={`account-web-item-v2-2 account-web-item-v2-1`}>
       <div className={"options"}>
         <div className="icon-5">{icon}</div>
-        <TextWithHeader
-          primaryHeader={"Change Password"}
-          subHeader={"Primary Account"}
-        />
+        <TextWithHeader primaryHeader={primaryHeader} subHeader={subHeader} />
       </div>
-      <TagElement
-        tag={"Change"}
-        handleClick={() => navigate("/change-password")}
-      />
+      <TagElement tag={"Change"} handleClick={() => navigate(path)} />
     </div>
   );
 };
