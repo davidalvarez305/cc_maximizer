@@ -43,7 +43,7 @@ const ProfilePicture = () => {
       <div className="form-container">
         <Formik initialValues={{ image: "" }} onSubmit={handleSubmit}>
           <Form>
-            <div>
+            <div className="form-subcontainer">
               <label
                 htmlFor="image"
                 style={{
@@ -63,8 +63,8 @@ const ProfilePicture = () => {
                 type="file"
                 accept="image/*"
               />
+              {image && <Button>Upload</Button>}
             </div>
-            {image && <Button>Upload</Button>}
           </Form>
         </Formik>
         {image && <div>{image.name}</div>}

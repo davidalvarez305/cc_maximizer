@@ -9,7 +9,7 @@ type Props = React.DetailedHTMLProps<
 
 const Button: React.FC<Props> = ({ children, ...props }) => {
   const styles = {
-    buttonDarkLabel: {
+    button: {
       alignItems: "flex-start",
       backgroundColor: "#000000",
       borderRadius: "8px",
@@ -29,7 +29,7 @@ const Button: React.FC<Props> = ({ children, ...props }) => {
   };
 
   return (
-    <button {...props} style={{ ...styles.buttonDarkLabel }}>
+    <button {...props} style={{ ...styles.button }}>
       <div
         style={{ ...styles.label, textAlign: "center", whiteSpace: "nowrap" }}
       >
