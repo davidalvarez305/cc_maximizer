@@ -45,11 +45,7 @@ func Connect() {
 
 	fmt.Printf("Connected to Database.\n")
 
-	err = db.AutoMigrate(&models.User{}, &models.Bank{}, &models.Category{}, &models.CreditCard{}, &models.Reward{})
-
-	if err != nil {
-		log.Fatalf("Error migrating models: %s\n", err.Error())
-	}
+	db.AutoMigrate(&models.User{}, &models.Bank{}, &models.Category{}, &models.CreditCard{}, &models.Reward{})
 
 	DB = db
 }
