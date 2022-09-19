@@ -1,6 +1,5 @@
-import { useContext } from "react";
-import { SearchIcon } from "./assets/SearchIcon";
-import TopNavigation from "./components/TopNavigation";
+import { useContext, useEffect } from "react";
+import { ME_ROUTE } from "./constants";
 import { UserContext } from "./context/UserContext";
 import useFetch from "./hooks/useFetch";
 import PrimaryLayout from "./layout/Primary";
@@ -9,6 +8,12 @@ export const App = () => {
   const ctx = useContext(UserContext);
 
   const { makeRequest } = useFetch();
+
+  useEffect(() => {
+    makeRequest({ url: ME_ROUTE }, (res) => {
+      console.log(res);
+    });
+  }, []);
 
   return (
     <PrimaryLayout screenName="Home">

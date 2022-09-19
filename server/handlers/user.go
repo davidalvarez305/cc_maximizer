@@ -138,11 +138,13 @@ func Logout(c *fiber.Ctx) error {
 }
 
 func GetUser(c *fiber.Ctx) error {
+	var user models.User
+	gob.Register(user)
 	sess, err := sessions.Sessions.Get(c)
 
 	if err != nil {
 		return c.Status(500).JSON(fiber.Map{
-			"data": "Unable to retrieve cookie.",
+			"data": err.Error(),
 		})
 	}
 
