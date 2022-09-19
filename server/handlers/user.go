@@ -54,7 +54,7 @@ func CreateUser(c *fiber.Ctx) error {
 }
 
 func GetUser(c *fiber.Ctx) error {
-	var user models.Users
+	var user models.User
 	gob.Register(user)
 	sess, err := sessions.Sessions.Get(c)
 
@@ -79,7 +79,7 @@ func GetUser(c *fiber.Ctx) error {
 }
 
 func Logout(c *fiber.Ctx) error {
-	var user models.Users
+	var user models.User
 	gob.Register(user)
 	sess, err := sessions.Sessions.Get(c)
 
@@ -102,7 +102,7 @@ func Logout(c *fiber.Ctx) error {
 
 func Login(c *fiber.Ctx) error {
 	var u types.Users
-	var user models.Users
+	var user models.User
 	gob.Register(user)
 	err := c.BodyParser(&u)
 
