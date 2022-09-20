@@ -5,10 +5,13 @@ import PrimaryLayout from "../../../layout/Primary";
 import "./ProfilePicture.css";
 import { FiSend } from "react-icons/fi";
 import { GrClose } from "react-icons/gr";
+import useFetch from "../../../hooks/useFetch";
+import { USER_ROUTE } from "../../../constants";
 
 const ProfilePicture = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [image, setImage] = useState<File>();
+  const { isLoading, makeRequest, error } = useFetch();
 
   function handleUpload(event: ChangeEvent<HTMLInputElement>) {
     if (event.target.files) {
@@ -17,7 +20,24 @@ const ProfilePicture = () => {
   }
 
   function handleSubmit() {
-    console.log(image);
+    if (image) {
+      const fd = new FormData();
+
+      fd.append("image", image, image?.name);
+
+      makeRequest(
+        {
+          url: USER_ROUTE + "/picture",
+          method: "PUT",
+          data: fd,
+        },
+        (res) => {
+          console.log(res);
+        }
+      );
+    } else {
+      //@TODO TOAST FOR UPLOAD IMAGE!!
+    }
   }
 
   const styles = {

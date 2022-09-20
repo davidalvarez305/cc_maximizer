@@ -1,18 +1,17 @@
 import { Form, Formik } from "formik";
-import { useNavigate } from "react-router";
+import { useContext } from "react";
 import Button from "../../../components/Button";
 import PrimaryInput from "../../../components/PrimaryInput";
 import RequestErrorMessage from "../../../components/RequestErrorMessage";
 import { USER_ROUTE } from "../../../constants";
+import { UserContext } from "../../../context/UserContext";
 import useFetch from "../../../hooks/useFetch";
 import PrimaryLayout from "../../../layout/Primary";
 import "./ChangePassword.css";
 
 const ChangePassword = () => {
-  const navigate = useNavigate();
+  const ctx = useContext(UserContext);
   const { isLoading, makeRequest, error } = useFetch();
-
-  console.log(error);
 
   function handleSubmit(values: { newPassword: string }) {
     makeRequest(
@@ -22,7 +21,9 @@ const ChangePassword = () => {
         data: values,
       },
       (res) => {
-        console.log(res);
+        if (res.statusText === "OK") {
+          ctx?.Logout();
+        }
       }
     );
   }

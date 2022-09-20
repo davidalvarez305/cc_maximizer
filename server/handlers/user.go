@@ -9,6 +9,7 @@ import (
 	"github.com/davidalvarez305/cc_maximizer/server/models"
 	"github.com/davidalvarez305/cc_maximizer/server/sessions"
 	"github.com/davidalvarez305/cc_maximizer/server/types"
+	"github.com/davidalvarez305/cc_maximizer/server/utils"
 	"github.com/gofiber/fiber/v2"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -222,7 +223,30 @@ func UpdateUser(c *fiber.Ctx) error {
 		})
 	}
 
-	return c.Status(201).JSON(fiber.Map{
+	return c.Status(200).JSON(fiber.Map{
 		"data": data,
+	})
+}
+
+func ChangeProfilePicture(c *fiber.Ctx) error {
+	var user models.User
+	gob.Register(user)
+
+	file, err := c.FormFile("image")
+
+	if err != nil {
+		return err
+	}
+
+	err = utils.UploadImageToS3(file)
+
+	if err != nil {
+		return c.Status(500).JSON(fiber.Map{
+			"data": err.Error(),
+		})
+	}
+
+	return c.Status(200).JSON(fiber.Map{
+		"data": "OK",
 	})
 }
