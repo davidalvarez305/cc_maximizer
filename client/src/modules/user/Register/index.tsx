@@ -5,7 +5,7 @@ import SignInButton from "../../../components/SignInButton";
 import PrimaryInput from "../../../components/PrimaryInput";
 import { Link } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
-import { REGISTER_ROUTE } from "../../../constants";
+import { USER_ROUTE } from "../../../constants";
 import RequestErrorMessage from "../../../components/RequestErrorMessage";
 import LoginOrRegister from "../UserWrapper";
 
@@ -19,7 +19,7 @@ const Register: React.FC = () => {
   }) {
     makeRequest(
       {
-        url: REGISTER_ROUTE,
+        url: USER_ROUTE,
         method: "POST",
         data: values,
       },

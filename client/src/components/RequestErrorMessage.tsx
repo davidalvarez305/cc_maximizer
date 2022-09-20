@@ -13,11 +13,11 @@ const RequestErrorMessage: React.FC<Props> = ({ message }) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            marginTop: 10,
           }}
         >
           <p
             style={{
-              fontFamily: "Georgia",
               color: "red",
               fontSize: 18,
             }}

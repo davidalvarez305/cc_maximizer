@@ -8,6 +8,7 @@ import (
 	"github.com/davidalvarez305/cc_maximizer/server/database"
 	"github.com/davidalvarez305/cc_maximizer/server/models"
 	"github.com/davidalvarez305/cc_maximizer/server/sessions"
+	"github.com/davidalvarez305/cc_maximizer/server/types"
 	"github.com/gofiber/fiber/v2"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -89,7 +90,7 @@ func Login(c *fiber.Ctx) error {
 
 	if err != nil {
 		return c.Status(400).JSON(fiber.Map{
-			"data": err.Error(),
+			"data": "Incorrect password.",
 		})
 	}
 
@@ -100,7 +101,7 @@ func Login(c *fiber.Ctx) error {
 		})
 	}
 
-	sess.Set("user", u)
+	sess.Set("userId", u.ID)
 
 	err = sess.Save()
 
@@ -148,7 +149,7 @@ func GetUser(c *fiber.Ctx) error {
 		})
 	}
 
-	u := sess.Get("user")
+	u := sess.Get("userId")
 
 	if u == nil {
 		return c.Status(404).JSON(fiber.Map{
@@ -158,5 +159,70 @@ func GetUser(c *fiber.Ctx) error {
 
 	return c.Status(200).JSON(fiber.Map{
 		"data": u,
+	})
+}
+
+func UpdateUser(c *fiber.Ctx) error {
+	var user models.User
+	gob.Register(user)
+	var p types.ChangePasswordInput
+	err := c.BodyParser(&p)
+
+	if err != nil {
+		return c.Status(400).JSON(fiber.Map{
+			"data": "Unable to Parse Request Body.",
+		})
+	}
+
+	if len(p.NewPassword) < 8 {
+		return c.Status(400).JSON(fiber.Map{
+			"data": "Password must be at least of 8 characters in length.",
+		})
+	}
+
+	sess, err := sessions.Sessions.Get(c)
+
+	if err != nil {
+		return c.Status(500).JSON(fiber.Map{
+			"data": err.Error(),
+		})
+	}
+
+	userId := sess.Get("userId")
+
+	if userId == nil {
+		return c.Status(404).JSON(fiber.Map{
+			"data": "Not found.",
+		})
+	}
+
+	result := database.DB.Where("id = ?", userId).First(&user)
+
+	if result.Error != nil {
+		return c.Status(404).JSON(fiber.Map{
+			"data": "User couldn't be found.",
+		})
+	}
+
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(p.NewPassword), bcrypt.DefaultCost)
+
+	if err != nil {
+		return c.Status(500).JSON(fiber.Map{
+			"data": err.Error(),
+		})
+	}
+
+	user.Password = string(hashedPassword)
+
+	data, err := actions.Save(&user)
+
+	if err != nil {
+		return c.Status(500).JSON(fiber.Map{
+			"data": err.Error(),
+		})
+	}
+
+	return c.Status(201).JSON(fiber.Map{
+		"data": data,
 	})
 }

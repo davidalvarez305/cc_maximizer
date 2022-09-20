@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { ME_ROUTE } from "./constants";
+import { USER_ROUTE } from "./constants";
 import { UserContext } from "./context/UserContext";
 import useFetch from "./hooks/useFetch";
 import PrimaryLayout from "./layout/Primary";
@@ -10,7 +10,7 @@ export const App = () => {
   const { makeRequest } = useFetch();
 
   useEffect(() => {
-    makeRequest({ url: ME_ROUTE }, (res) => {
+    makeRequest({ url: USER_ROUTE }, (res) => {
       console.log(res);
     });
   }, []);

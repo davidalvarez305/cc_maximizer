@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { LOGOUT_ROUTE, ME_ROUTE } from "../constants";
+import { LOGOUT_ROUTE, USER_ROUTE } from "../constants";
 import { User } from "../types/general";
 import useFetch from "./useFetch";
 
@@ -38,7 +38,7 @@ export default function useAuth() {
   function isLoggedIn() {
     makeRequest(
       {
-        url: `${ME_ROUTE}`,
+        url: `${USER_ROUTE}`,
         method: "GET",
       },
       (res) => {

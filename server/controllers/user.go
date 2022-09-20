@@ -10,7 +10,8 @@ func User(router fiber.Router) {
 	user := router.Group("user")
 
 	user.Get("/", handlers.GetUser)
-	user.Post("/register", handlers.CreateUser)
+	user.Put("/", handlers.UpdateUser)
+	user.Post("/", handlers.CreateUser)
 	user.Post("/login", handlers.Login)
 	user.Post("/logout", handlers.Logout)
 }
