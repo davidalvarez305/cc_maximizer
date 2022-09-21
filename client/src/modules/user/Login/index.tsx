@@ -1,16 +1,19 @@
 import { Form, Formik } from "formik";
-import React from "react";
+import React, { useContext } from "react";
 import Checkbox from "../../../components/Checkbox";
 import SignInButton from "../../../components/SignInButton";
 import PrimaryInput from "../../../components/PrimaryInput";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
 import { LOGIN_ROUTE } from "../../../constants";
 import RequestErrorMessage from "../../../components/RequestErrorMessage";
 import LoginOrRegister from "../UserWrapper";
+import { UserContext } from "../../../context/UserContext";
 
 const Login: React.FC = () => {
   const { makeRequest, isLoading, error } = useFetch();
+  const ctx = useContext(UserContext);
+  const navigate = useNavigate();
 
   function handleSubmit(values: { email: string; password: string }) {
     makeRequest(
@@ -20,7 +23,8 @@ const Login: React.FC = () => {
         data: values,
       },
       (res) => {
-        console.log(res.data.data);
+        ctx?.Login(res.data.data);
+        navigate("/");
       }
     );
   }

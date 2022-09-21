@@ -4,12 +4,12 @@ import (
 	"github.com/davidalvarez305/cc_maximizer/server/database"
 )
 
-func Save(item interface{}) (interface{}, error) {
+func Save(item interface{}) error {
 	result := database.DB.Save(item)
 
 	if result.Error != nil {
-		return item, result.Error
+		return result.Error
 	}
 
-	return item, nil
+	return nil
 }

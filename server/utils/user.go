@@ -12,6 +12,7 @@ import (
 func UploadImageToS3(file *multipart.FileHeader) error {
 	ctx := context.TODO()
 	var bucketName = os.Getenv("AWS_S3_BUCKET")
+	var key = "profile-pictures/" + file.Filename
 	cache := "31536000"
 
 	cfg, err := config.LoadDefaultConfig(ctx)
@@ -28,7 +29,7 @@ func UploadImageToS3(file *multipart.FileHeader) error {
 
 	params := s3.PutObjectInput{
 		Bucket:       &bucketName,
-		Key:          &file.Filename,
+		Key:          &key,
 		Body:         contents,
 		CacheControl: &cache,
 	}

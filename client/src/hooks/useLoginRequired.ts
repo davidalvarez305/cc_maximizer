@@ -7,7 +7,7 @@ export default function useLoginRequired() {
   const ctx = useContext(UserContext);
   useEffect(() => {
     if (!ctx?.user.id) {
-      navigate("/");
+      navigate("/login");
     }
   }, [ctx?.user]);
 }

@@ -46,7 +46,7 @@ func CreateUser(c *fiber.Ctx) error {
 
 	u.Password = string(hashedPassword)
 
-	data, err := actions.Save(u)
+	err = actions.Save(u)
 
 	if err != nil {
 
@@ -62,7 +62,7 @@ func CreateUser(c *fiber.Ctx) error {
 	}
 
 	return c.Status(201).JSON(fiber.Map{
-		"data": data,
+		"data": u,
 	})
 }
 
@@ -223,7 +223,7 @@ func UpdateUser(c *fiber.Ctx) error {
 
 	user.Password = string(hashedPassword)
 
-	data, err := actions.Save(&user)
+	err = actions.Save(&user)
 
 	if err != nil {
 		return c.Status(500).JSON(fiber.Map{
@@ -232,7 +232,7 @@ func UpdateUser(c *fiber.Ctx) error {
 	}
 
 	return c.Status(200).JSON(fiber.Map{
-		"data": data,
+		"data": user,
 	})
 }
 
@@ -250,11 +250,45 @@ func ChangeProfilePicture(c *fiber.Ctx) error {
 
 	if err != nil {
 		return c.Status(500).JSON(fiber.Map{
+			"data": "Could not upload image",
+		})
+	}
+
+	sess, err := sessions.Sessions.Get(c)
+
+	if err != nil {
+		return c.Status(500).JSON(fiber.Map{
+			"data": err.Error(),
+		})
+	}
+
+	userId := sess.Get("userId")
+
+	if userId == nil {
+		return c.Status(404).JSON(fiber.Map{
+			"data": "Not found.",
+		})
+	}
+
+	result := database.DB.Where("id = ?", userId).First(&user)
+
+	if result.Error != nil {
+		return c.Status(404).JSON(fiber.Map{
+			"data": result.Error.Error(),
+		})
+	}
+
+	user.ProfileImage = file.Filename
+
+	err = actions.Save(&user)
+
+	if err != nil {
+		return c.Status(500).JSON(fiber.Map{
 			"data": err.Error(),
 		})
 	}
 
 	return c.Status(200).JSON(fiber.Map{
-		"data": "OK",
+		"data": user,
 	})
 }

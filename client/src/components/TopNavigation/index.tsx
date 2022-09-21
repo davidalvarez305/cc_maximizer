@@ -25,6 +25,7 @@ const TopNavigation: React.FC<Props> = ({
   handleNavigationSubmit,
 }) => {
   const ctx = useContext(UserContext);
+  const USER_IMAGE = `https://cc-maximizer.s3.amazonaws.com/profile-pictures/${ctx?.user.profile_image}`
   function NavigationInputField() {
     return (
       <Formik initialValues={{ search: "" }} onSubmit={handleNavigationSubmit}>
@@ -52,7 +53,7 @@ const TopNavigation: React.FC<Props> = ({
         </IconButton>
         <div
           className="img-2"
-          style={{ backgroundImage: `url(${ctx?.user.profile_image})` }}
+          style={{ backgroundImage: `url(${USER_IMAGE})` }}
         ></div>
       </div>
     </div>
