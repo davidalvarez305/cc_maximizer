@@ -150,16 +150,24 @@ func GetUser(c *fiber.Ctx) error {
 		})
 	}
 
-	u := sess.Get("userId")
+	userId := sess.Get("userId")
 
-	if u == nil {
+	if userId == nil {
 		return c.Status(404).JSON(fiber.Map{
 			"data": "Not found.",
 		})
 	}
 
+	result := database.DB.Where("id = ?", userId).First(&user)
+
+	if result.Error != nil {
+		return c.Status(404).JSON(fiber.Map{
+			"data": result.Error.Error(),
+		})
+	}
+
 	return c.Status(200).JSON(fiber.Map{
-		"data": u,
+		"data": user,
 	})
 }
 
@@ -201,7 +209,7 @@ func UpdateUser(c *fiber.Ctx) error {
 
 	if result.Error != nil {
 		return c.Status(404).JSON(fiber.Map{
-			"data": "User couldn't be found.",
+			"data": result.Error.Error(),
 		})
 	}
 
