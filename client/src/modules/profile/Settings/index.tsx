@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Settings.css";
 import { SettingsIcon } from "../../../assets/SettingsIcon";
 import ProfileSettingsElement from "../../../components/ProfileSettingsElement";
 import PrimaryLayout from "../../../layout/Primary";
+import { UserContext } from "../../../context/UserContext";
+import { BUCKET_URL } from "../../../constants";
 
 const ProfileSettings: React.FC = () => {
+  const ctx = useContext(UserContext);
+  const USER_IMAGE = `${BUCKET_URL}/profile-pictures/${ctx?.user.profile_image}`;
   const settings = [
     {
       icon: <SettingsIcon />,
@@ -13,13 +17,7 @@ const ProfileSettings: React.FC = () => {
       path: "/change-password",
     },
     {
-      icon: (
-        <img
-          className="img-2"
-          src="https://southfloridaathleticclub.s3.amazonaws.com/media/misc/default.webp"
-          alt="me"
-        />
-      ),
+      icon: <img className="img-2" src={USER_IMAGE} alt="Me" />,
       primaryHeader: "Change Profile Picture",
       subHeader: "Get a new look",
       path: "/profile-picture",

@@ -246,7 +246,7 @@ func ChangeProfilePicture(c *fiber.Ctx) error {
 		return err
 	}
 
-	err = utils.UploadImageToS3(file)
+	fileName, err := utils.UploadImageToS3(file)
 
 	if err != nil {
 		return c.Status(500).JSON(fiber.Map{
@@ -278,7 +278,7 @@ func ChangeProfilePicture(c *fiber.Ctx) error {
 		})
 	}
 
-	user.ProfileImage = file.Filename
+	user.ProfileImage = fileName
 
 	err = actions.Save(&user)
 

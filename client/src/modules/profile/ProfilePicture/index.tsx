@@ -91,7 +91,11 @@ const ProfilePicture = () => {
                 accept="image/*"
               />
               {image && (
-                <Button className="LightBlue">
+                <Button
+                  type={"submit"}
+                  disabled={isLoading}
+                  className="LightBlue"
+                >
                   <div className="upload-button">
                     Upload
                     <FiSend />

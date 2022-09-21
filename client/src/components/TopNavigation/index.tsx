@@ -5,6 +5,7 @@ import "./TopNavigation.css";
 import { NotificationBell } from "../../assets/NotificationBell";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
+import { BUCKET_URL } from "../../constants";
 
 interface Props {
   screenName: string;
@@ -25,7 +26,8 @@ const TopNavigation: React.FC<Props> = ({
   handleNavigationSubmit,
 }) => {
   const ctx = useContext(UserContext);
-  const USER_IMAGE = `https://cc-maximizer.s3.amazonaws.com/profile-pictures/${ctx?.user.profile_image}`
+  const USER_IMAGE = `${BUCKET_URL}/profile-pictures/${ctx?.user.profile_image}`;
+  console.log(USER_IMAGE)
   function NavigationInputField() {
     return (
       <Formik initialValues={{ search: "" }} onSubmit={handleNavigationSubmit}>
