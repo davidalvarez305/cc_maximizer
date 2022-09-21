@@ -6,10 +6,12 @@ import RequestErrorMessage from "../../../components/RequestErrorMessage";
 import { USER_ROUTE } from "../../../constants";
 import { UserContext } from "../../../context/UserContext";
 import useFetch from "../../../hooks/useFetch";
+import useLoginRequired from "../../../hooks/useLoginRequired";
 import PrimaryLayout from "../../../layout/Primary";
 import "./ChangePassword.css";
 
 const ChangePassword = () => {
+  useLoginRequired();
   const ctx = useContext(UserContext);
   const { isLoading, makeRequest, error } = useFetch();
 
