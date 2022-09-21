@@ -292,3 +292,49 @@ func ChangeProfilePicture(c *fiber.Ctx) error {
 		"data": user,
 	})
 }
+
+func Delete(c *fiber.Ctx) error {
+	var user models.User
+	gob.Register(user)
+	sess, err := sessions.Sessions.Get(c)
+
+	if err != nil {
+		return c.Status(500).JSON(fiber.Map{
+			"data": err.Error(),
+		})
+	}
+
+	userId := sess.Get("userId")
+
+	if userId == nil {
+		return c.Status(404).JSON(fiber.Map{
+			"data": "Not found.",
+		})
+	}
+
+	result := database.DB.Where("id = ?", userId).First(&user)
+
+	if result.Error != nil {
+		return c.Status(404).JSON(fiber.Map{
+			"data": result.Error.Error(),
+		})
+	}
+
+	if err := sess.Destroy(); err != nil {
+		return c.Status(500).JSON(fiber.Map{
+			"data": err.Error(),
+		})
+	}
+
+	err = actions.Delete(&user)
+
+	if err != nil {
+		return c.Status(500).JSON(fiber.Map{
+			"data": err.Error(),
+		})
+	}
+
+	return c.Status(204).JSON(fiber.Map{
+		"data": "Account successfully deleted.",
+	})
+}

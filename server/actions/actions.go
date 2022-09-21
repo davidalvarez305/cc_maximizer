@@ -13,3 +13,13 @@ func Save(item interface{}) error {
 
 	return nil
 }
+
+func Delete(item interface{}) error {
+	result := database.DB.Delete(item)
+
+	if result.Error != nil {
+		return result.Error
+	}
+
+	return nil
+}

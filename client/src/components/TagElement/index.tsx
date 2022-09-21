@@ -1,24 +1,18 @@
-import React, { useState } from "react";
+import { Button, ButtonProps } from "@chakra-ui/react";
+import React from "react";
 import "./TagElement.css";
 
-interface Props {
+type Props = ButtonProps & {
   tag: string;
-  handleClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-}
+  handleClick: React.MouseEventHandler<HTMLButtonElement>;
+};
 
-const TagElement: React.FC<Props> = ({ tag, handleClick }) => {
-  const [isHovering, setIsHovering] = useState(false);
+const TagElement: React.FC<Props> = ({ tag, handleClick, ...props }) => {
   return (
     <div className={`element-tags-f5-f5-fa-on-light-2`}>
-      <div
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
-        style={{ cursor: isHovering ? "pointer" : undefined }}
-        onClick={handleClick}
-        className="tag-3 x12px--bold"
-      >
+      <Button {...props} onClick={handleClick} className="tag-3 x12px--bold">
         {tag}
-      </div>
+      </Button>
     </div>
   );
 };
