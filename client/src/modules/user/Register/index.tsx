@@ -3,7 +3,7 @@ import React from "react";
 import Checkbox from "../../../components/Checkbox";
 import SignInButton from "../../../components/SignInButton";
 import PrimaryInput from "../../../components/PrimaryInput";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
 import { USER_ROUTE } from "../../../constants";
 import RequestErrorMessage from "../../../components/RequestErrorMessage";
@@ -11,6 +11,7 @@ import LoginOrRegister from "../UserWrapper";
 
 const Register: React.FC = () => {
   const { makeRequest, isLoading, error } = useFetch();
+  const navigate = useNavigate();
 
   function handleSubmit(values: {
     username: string;
@@ -23,8 +24,8 @@ const Register: React.FC = () => {
         method: "POST",
         data: values,
       },
-      (res) => {
-        console.log(res.data.data);
+      (_) => {
+        navigate("/login");
       }
     );
   }

@@ -10,8 +10,10 @@ import { UserContext } from "../../../context/UserContext";
 import RequestErrorMessage from "../../../components/RequestErrorMessage";
 import useLoginRequired from "../../../hooks/useLoginRequired";
 import Button from "../../../components/Button";
+import { useToast } from "@chakra-ui/react";
 
 const ProfilePicture = () => {
+  const toast = useToast();
   useLoginRequired();
   const [isHovering, setIsHovering] = useState(false);
   const [image, setImage] = useState<File>();
@@ -41,7 +43,13 @@ const ProfilePicture = () => {
         }
       );
     } else {
-      //@TODO TOAST FOR UPLOAD IMAGE!!
+      toast({
+        title: "Missing image!",
+        description: "You haven't selected an image.",
+        status: "warning",
+        duration: 3000,
+        isClosable: true,
+      });
     }
   }
 
