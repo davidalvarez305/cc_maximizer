@@ -1,11 +1,8 @@
 import React, { useState } from "react";
+import { Button as ChakraButton, ButtonProps } from "@chakra-ui/react";
 import "./Button.css";
 
-type Props = React.DetailedHTMLProps<
-  React.ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
-> & {
-  children: React.ReactNode;
+type Props = ButtonProps & {
   className: "Dark" | "Light" | "Blue" | "LightBlue";
 };
 
@@ -26,8 +23,8 @@ const Button: React.FC<Props> = ({ children, className, ...props }) => {
   };
 
   return (
-    <button
-      style={{
+    <ChakraButton
+      sx={{
         cursor: isHovering ? "pointer" : undefined,
       }}
       onMouseEnter={() => setIsHovering(true)}
@@ -36,7 +33,7 @@ const Button: React.FC<Props> = ({ children, className, ...props }) => {
       className={buttonOptions[className]}
     >
       <div className={labelOptions[className]}>{children}</div>
-    </button>
+    </ChakraButton>
   );
 };
 

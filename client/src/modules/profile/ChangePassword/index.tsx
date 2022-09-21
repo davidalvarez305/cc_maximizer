@@ -34,7 +34,7 @@ const ChangePassword = () => {
         <Form>
           <div className="main-container">
             <PrimaryInput label={"New Password"} name={"newPassword"} />
-            <Button disabled={isLoading} className="Dark" type="submit">
+            <Button isLoading={isLoading} className="Dark" type="submit">
               Submit
             </Button>
             <RequestErrorMessage {...error} />

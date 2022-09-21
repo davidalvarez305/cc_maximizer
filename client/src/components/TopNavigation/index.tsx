@@ -27,7 +27,6 @@ const TopNavigation: React.FC<Props> = ({
 }) => {
   const ctx = useContext(UserContext);
   const USER_IMAGE = `${BUCKET_URL}/profile-pictures/${ctx?.user.profile_image}`;
-  console.log(USER_IMAGE)
   function NavigationInputField() {
     return (
       <Formik initialValues={{ search: "" }} onSubmit={handleNavigationSubmit}>

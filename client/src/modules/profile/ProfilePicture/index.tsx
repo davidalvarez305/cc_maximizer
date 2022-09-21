@@ -1,6 +1,5 @@
 import { Form, Formik } from "formik";
 import React, { ChangeEvent, useContext, useState } from "react";
-import Button from "../../../components/Button";
 import PrimaryLayout from "../../../layout/Primary";
 import "./ProfilePicture.css";
 import { FiSend } from "react-icons/fi";
@@ -10,6 +9,7 @@ import { USER_ROUTE } from "../../../constants";
 import { UserContext } from "../../../context/UserContext";
 import RequestErrorMessage from "../../../components/RequestErrorMessage";
 import useLoginRequired from "../../../hooks/useLoginRequired";
+import Button from "../../../components/Button";
 
 const ProfilePicture = () => {
   useLoginRequired();
@@ -93,7 +93,8 @@ const ProfilePicture = () => {
               {image && (
                 <Button
                   type={"submit"}
-                  disabled={isLoading}
+                  isLoading={isLoading}
+                  loadingText={"Uploading"}
                   className="LightBlue"
                 >
                   <div className="upload-button">

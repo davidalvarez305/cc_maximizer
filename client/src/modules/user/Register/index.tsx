@@ -66,7 +66,7 @@ const Register: React.FC = () => {
                 <Link to={"/forgot-password"}>Forgot Password</Link>
               </div>
             </div>
-            <SignInButton disabled={isLoading}>Sign up</SignInButton>
+            <SignInButton isLoading={isLoading}>Sign up</SignInButton>
             {error.message.length > 0 && <RequestErrorMessage {...error} />}
           </div>
         </Form>

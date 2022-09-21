@@ -61,7 +61,7 @@ const Login: React.FC = () => {
                 <Link to={"/forgot-password"}>Forgot Password</Link>
               </div>
             </div>
-            <SignInButton disabled={isLoading}>Sign in</SignInButton>
+            <SignInButton isLoading={isLoading}>Sign in</SignInButton>
             {error.message.length > 0 && <RequestErrorMessage {...error} />}
           </div>
         </Form>
