@@ -18,9 +18,6 @@ const PrimaryLayout: React.FC<Props> = ({ children, screenName }) => {
           <TopNavigation
             screenName={screenName}
             searchIcon={<SearchIcon />}
-            img={
-              "https://southfloridaathleticclub.s3.amazonaws.com/media/misc/default.webp"
-            }
             handleNavigationSubmit={(values) => console.log(values)}
           />
           <div className="overlap-group1">{children}</div>

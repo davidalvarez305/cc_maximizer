@@ -3,11 +3,12 @@ import PrimaryInput from "../PrimaryInput";
 import IconButton from "../IconButton";
 import "./TopNavigation.css";
 import { NotificationBell } from "../../assets/NotificationBell";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 
 interface Props {
   screenName: string;
   searchIcon: React.ReactNode;
-  img: string;
   handleNavigationSubmit: (
     values: {
       search: string;
@@ -21,9 +22,9 @@ interface Props {
 const TopNavigation: React.FC<Props> = ({
   screenName,
   searchIcon,
-  img,
   handleNavigationSubmit,
 }) => {
+  const ctx = useContext(UserContext);
   function NavigationInputField() {
     return (
       <Formik initialValues={{ search: "" }} onSubmit={handleNavigationSubmit}>
@@ -49,7 +50,10 @@ const TopNavigation: React.FC<Props> = ({
         <IconButton>
           <NotificationBell />
         </IconButton>
-        <div className="img-2" style={{ backgroundImage: `url(${img})` }}></div>
+        <div
+          className="img-2"
+          style={{ backgroundImage: `url(${ctx?.user.profile_image})` }}
+        ></div>
       </div>
     </div>
   );

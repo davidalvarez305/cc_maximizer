@@ -1,19 +1,11 @@
-import { useContext, useEffect } from "react";
-import { USER_ROUTE } from "./constants";
-import { UserContext } from "./context/UserContext";
 import useFetch from "./hooks/useFetch";
+import useLoginRequired from "./hooks/useLoginRequired";
 import PrimaryLayout from "./layout/Primary";
 
 export const App = () => {
-  const ctx = useContext(UserContext);
+  useLoginRequired()
 
   const { makeRequest } = useFetch();
-
-  useEffect(() => {
-    makeRequest({ url: USER_ROUTE }, (res) => {
-      console.log(res);
-    });
-  }, []);
 
   return (
     <PrimaryLayout screenName="Home">

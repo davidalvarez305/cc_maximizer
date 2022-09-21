@@ -1,7 +1,11 @@
+export type CreditCard = {};
+
 export type User = {
-  id: number | null;
+  id: number;
   username: string;
   password: string;
   email: string;
-  is_admin: boolean;
+  profile_image: string;
+  created_at: string;
+  credit_cards?: CreditCard[];
 };
