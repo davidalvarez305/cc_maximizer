@@ -14,7 +14,7 @@ import (
 )
 
 func CreateUser(c *fiber.Ctx) error {
-	var u *actions.User
+	var u actions.User
 	err := c.BodyParser(&u)
 
 	if err != nil {
@@ -66,7 +66,7 @@ func CreateUser(c *fiber.Ctx) error {
 }
 
 func Login(c *fiber.Ctx) error {
-	var u models.User
+	var u actions.User
 	gob.Register(u)
 	err := c.BodyParser(&u)
 
@@ -117,7 +117,7 @@ func Login(c *fiber.Ctx) error {
 }
 
 func Logout(c *fiber.Ctx) error {
-	var user models.User
+	var user actions.User
 	gob.Register(user)
 	sess, err := sessions.Sessions.Get(c)
 
@@ -139,29 +139,13 @@ func Logout(c *fiber.Ctx) error {
 }
 
 func GetUser(c *fiber.Ctx) error {
-	var user models.User
-	gob.Register(user)
-	sess, err := sessions.Sessions.Get(c)
+	var user actions.User
+
+	err := user.GetUserFromSession(c)
 
 	if err != nil {
-		return c.Status(500).JSON(fiber.Map{
+		return c.Status(404).JSON(fiber.Map{
 			"data": err.Error(),
-		})
-	}
-
-	userId := sess.Get("userId")
-
-	if userId == nil {
-		return c.Status(404).JSON(fiber.Map{
-			"data": "Not found.",
-		})
-	}
-
-	result := database.DB.Where("id = ?", userId).First(&user)
-
-	if result.Error != nil {
-		return c.Status(404).JSON(fiber.Map{
-			"data": result.Error.Error(),
 		})
 	}
 
@@ -236,7 +220,7 @@ func UpdateUser(c *fiber.Ctx) error {
 }
 
 func ChangeProfilePicture(c *fiber.Ctx) error {
-	var user actions.User
+	user := &actions.User{}
 
 	file, err := c.FormFile("image")
 
