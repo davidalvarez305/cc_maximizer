@@ -1,6 +1,7 @@
 package actions
 
 import (
+	"fmt"
 	"mime/multipart"
 
 	"github.com/davidalvarez305/cc_maximizer/server/database"
@@ -14,7 +15,7 @@ type User struct {
 	*models.User
 }
 
-func (user *User) GetUserById(userId int) error {
+func (user *User) GetUserById(userId string) error {
 	result := database.DB.Where("id = ?", userId).First(&user)
 
 	if result.Error != nil {
@@ -37,13 +38,7 @@ func (user *User) GetUserFromSession(c *fiber.Ctx) *User {
 		return nil
 	}
 
-	var uId int
-
-	if str, ok := userId.(int); ok {
-		uId = str
-	} else {
-		return nil
-	}
+	uId := fmt.Sprintf("%v", userId)
 
 	err = user.GetUserById(uId)
 
