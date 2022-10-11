@@ -15,14 +15,15 @@ type User struct {
 	*models.User
 }
 
-func (user *User) GetUserById(userId string) error {
+func GetUserById(userId string) (*User, error) {
+	var user *User
 	result := database.DB.Where("id = ?", userId).First(&user)
 
 	if result.Error != nil {
-		return result.Error
+		return nil, result.Error
 	}
 
-	return nil
+	return user, nil
 }
 
 func (user *User) GetUserFromSession(c *fiber.Ctx) *User {
@@ -40,13 +41,13 @@ func (user *User) GetUserFromSession(c *fiber.Ctx) *User {
 
 	uId := fmt.Sprintf("%v", userId)
 
-	err = user.GetUserById(uId)
+	u, err := GetUserById(uId)
 
 	if err != nil {
 		return nil
 	}
 
-	return user
+	return u
 }
 
 func (user *User) Save() error {
