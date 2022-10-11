@@ -9,7 +9,6 @@ import (
 	"github.com/davidalvarez305/cc_maximizer/server/models"
 	"github.com/davidalvarez305/cc_maximizer/server/sessions"
 	"github.com/davidalvarez305/cc_maximizer/server/types"
-	"github.com/davidalvarez305/cc_maximizer/server/utils"
 	"github.com/gofiber/fiber/v2"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -237,8 +236,7 @@ func UpdateUser(c *fiber.Ctx) error {
 }
 
 func ChangeProfilePicture(c *fiber.Ctx) error {
-	var user models.User
-	gob.Register(user)
+	var user *actions.User
 
 	file, err := c.FormFile("image")
 
@@ -246,41 +244,15 @@ func ChangeProfilePicture(c *fiber.Ctx) error {
 		return err
 	}
 
-	fileName, err := utils.UploadImageToS3(file)
+	user = user.GetUserFromSession(c)
 
-	if err != nil {
-		return c.Status(500).JSON(fiber.Map{
-			"data": "Could not upload image",
+	if user == nil {
+		return c.Status(400).JSON(fiber.Map{
+			"data": "User was not found.",
 		})
 	}
 
-	sess, err := sessions.Sessions.Get(c)
-
-	if err != nil {
-		return c.Status(500).JSON(fiber.Map{
-			"data": err.Error(),
-		})
-	}
-
-	userId := sess.Get("userId")
-
-	if userId == nil {
-		return c.Status(404).JSON(fiber.Map{
-			"data": "Not found.",
-		})
-	}
-
-	result := database.DB.Where("id = ?", userId).First(&user)
-
-	if result.Error != nil {
-		return c.Status(404).JSON(fiber.Map{
-			"data": result.Error.Error(),
-		})
-	}
-
-	user.ProfileImage = fileName
-
-	err = actions.Save(&user)
+	err = user.ChangeProfilePicture(file)
 
 	if err != nil {
 		return c.Status(500).JSON(fiber.Map{
@@ -294,8 +266,7 @@ func ChangeProfilePicture(c *fiber.Ctx) error {
 }
 
 func Delete(c *fiber.Ctx) error {
-	var user models.User
-	gob.Register(user)
+	var user *models.User
 	sess, err := sessions.Sessions.Get(c)
 
 	if err != nil {
