@@ -236,7 +236,7 @@ func UpdateUser(c *fiber.Ctx) error {
 }
 
 func ChangeProfilePicture(c *fiber.Ctx) error {
-	var user *actions.User
+	var user actions.User
 
 	file, err := c.FormFile("image")
 

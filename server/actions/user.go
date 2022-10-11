@@ -16,10 +16,7 @@ type User struct {
 }
 
 func (user *User) GetUserById(userId string) error {
-	var u User
-	result := database.DB.Where("id = ?", userId).First(&u)
-
-	user = &u
+	result := database.DB.Where("id = ?", userId).First(&user)
 
 	if result.Error != nil {
 		return result.Error
