@@ -15,7 +15,7 @@ import (
 )
 
 func CreateUser(c *fiber.Ctx) error {
-	var u *models.User
+	var u *actions.User
 	err := c.BodyParser(&u)
 
 	if err != nil {
@@ -46,7 +46,7 @@ func CreateUser(c *fiber.Ctx) error {
 
 	u.Password = string(hashedPassword)
 
-	err = actions.Save(u)
+	err = u.Save()
 
 	if err != nil {
 
