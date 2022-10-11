@@ -16,16 +16,10 @@ type User struct {
 }
 
 func (user *User) GetUserById(userId string) error {
-	var u *User
+	var u User
 	result := database.DB.Where("id = ?", userId).First(&u)
 
-	fmt.Printf("%+v\n", u) /* &{User:0xc000140080} */
-
-	fmt.Printf("%+v\n", &u) /* 0xc0000156e0 */
-
-	fmt.Printf("%+v\n", user) /* <nil> */
-
-	fmt.Printf("%+v\n", &user) /* 0xc0000156d8 */
+	user = &u
 
 	if result.Error != nil {
 		return result.Error
