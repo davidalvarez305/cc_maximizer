@@ -15,22 +15,30 @@ type User struct {
 	*models.User
 }
 
-func GetUserById(userId string) (*User, error) {
-	var user *User
-	result := database.DB.Where("id = ?", userId).First(&user)
+func (user *User) GetUserById(userId string) error {
+	var u *User
+	result := database.DB.Where("id = ?", userId).First(&u)
+
+	fmt.Printf("%+v\n", u) /* &{User:0xc000140080} */
+
+	fmt.Printf("%+v\n", &u) /* 0xc0000156e0 */
+
+	fmt.Printf("%+v\n", user) /* <nil> */
+
+	fmt.Printf("%+v\n", &user) /* 0xc0000156d8 */
 
 	if result.Error != nil {
-		return nil, result.Error
+		return result.Error
 	}
 
-	return user, nil
+	return nil
 }
 
-func (user *User) GetUserFromSession(c *fiber.Ctx) *User {
+func (user *User) GetUserFromSession(c *fiber.Ctx) error {
 	sess, err := sessions.Sessions.Get(c)
 
 	if err != nil {
-		return nil
+		return err
 	}
 
 	userId := sess.Get("userId")
@@ -41,13 +49,13 @@ func (user *User) GetUserFromSession(c *fiber.Ctx) *User {
 
 	uId := fmt.Sprintf("%v", userId)
 
-	u, err := GetUserById(uId)
+	err = user.GetUserById(uId)
 
 	if err != nil {
-		return nil
+		return err
 	}
 
-	return u
+	return nil
 }
 
 func (user *User) Save() error {

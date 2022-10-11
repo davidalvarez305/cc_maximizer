@@ -244,9 +244,9 @@ func ChangeProfilePicture(c *fiber.Ctx) error {
 		return err
 	}
 
-	user = user.GetUserFromSession(c)
+	err = user.GetUserFromSession(c)
 
-	if user == nil {
+	if err != nil {
 		return c.Status(400).JSON(fiber.Map{
 			"data": "User was not found.",
 		})
